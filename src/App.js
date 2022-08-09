@@ -41,7 +41,7 @@ const GetDataDB=async()=>{
 // handler click guardar 
   const handlerClick=async(e)=>{
     e.preventDefault()
-      const res= await axios.post("http://localhost:4000/v/",Data)
+      const res= await axios.post("https://mym-back.herokuapp.com/v/",Data)
   
       const {message}=res.data
       console.log(message)
@@ -108,14 +108,14 @@ const filtrar=(busqueda)=>{
              { header: 'Nombre', dataKey: 'Nombre' },
              { header: 'Detalle', dataKey: 'Nombre' },
              { header: 'Monto', dataKey: 'Monto' },
-
+ 
 
           ],
           body:Cajas2
     })
    
     doc.text("Total:"+total,140,10)  
-   doc.save("1")
+   doc.save("MYM"+"/"+new Date().getMonth()+1+"/"+new Date().getDate())
   }
 
   return (
