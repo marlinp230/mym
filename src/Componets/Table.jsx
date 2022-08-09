@@ -1,9 +1,10 @@
 import React from 'react'
 
 const Table = (props) => {
-  const {Cajas}= props
+  const {Cajas,createPDF}= props
   return (
-   <div className="container">
+   <div className="container"> 
+              <button onClick={createPDF} className='btn btn-sm btn-info'>pdf</button>
      <table className="table table-striped mt-4 text-center">
         <thead className='bg-info'>
             <tr>
