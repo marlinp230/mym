@@ -3,7 +3,7 @@ import NavBar from '../Componets/NavBar'
 
 
 const Add = (props) => {
-    const {handlerClick,handlerChange}=props
+    const {handlerClick,handlerChange,Client}=props
   return (
     <div>
         <NavBar/>
@@ -11,13 +11,19 @@ const Add = (props) => {
             <div className="row">
                 <div className="col-md-4">
                     <form  onSubmit={handlerClick}>
-                        <input type="text" name="Fecha" id="" placeholder='Fecha' className='form-control' onChange={handlerChange}/>
+                        <input type="date" name="Fecha" id="" placeholder='Fecha' className='form-control' onChange={handlerChange}/>
         
                         <select name="Nombre" id="" className='form-control' onChange={handlerChange}>
-                            <option value="Juan">Juan</option>
-                            <option value="Biligui">Biligui</option>
-                            <option value="Cataco">Cataco</option>
-                            <option value="Pedro">Pedro</option>
+                            {
+                                Client.map(client=>(
+                               
+                                       <option value={client.Nombre} key={client._id}>{client.Nombre}</option>
+                              
+                                   
+                                ))
+                            }
+                           
+                          
                         </select>
                         <input type="text" name="Detalle" id="" placeholder='Detalle...' className='form-control' onChange={handlerChange}/>
                         <input type="number" name="Monto" id="" placeholder='Monto o Efectivo #' className='form-control' onChange={handlerChange}/>

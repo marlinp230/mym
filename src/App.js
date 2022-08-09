@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react';
 import {BrowserRouter,Routes, Route} from 'react-router-dom'
 import Home from './Pages/Home';
 import Add from './Pages/Add';
+import Addname from './Pages/Addname';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import autotable from "jspdf-autotable"
 import jsPDF from "jspdf"
 
+
    
 function App() {
   const [Cajas, setCajas] = useState([]) 
   const [Cajas2, setCajas2] = useState([])
+  const [Client, setClient] = useState([])
+
   const [Data, setData] = useState({
     Fecha:"",
     Nombre:"",
@@ -24,6 +28,7 @@ const total=Cajas2.reduce((p,c)=>p+c.Monto,0)
 
   useEffect(() => {
     GetDataDB()
+    GetName()
   
   }, []) 
 
@@ -41,26 +46,71 @@ const GetDataDB=async()=>{
 // handler click guardar 
   const handlerClick=async(e)=>{
     e.preventDefault()
-      const res= await axios.post("https://mym-back.herokuapp.com/v/",Data)
-  
-      const {message}=res.data
-      console.log(message)
-      if (res.data) {
-        Swal.fire({
+      const res= await axios.post("https://mym-back.herokuapp.com/v/",Data);
+      const {message}=res.data;
+      if (res.data.status) {
+         Swal.fire({
           icon: 'success',
           text:message,
           timer:1000
         })
-      }else{
+       }else{
         Swal.fire({
           icon: 'error',
           text:message,
           timer:1000
         })
-
       }
       GetDataDB()
   }
+  //add name
+  const addName=async(e)=>{
+    e.preventDefault()
+    console.log(Data.Fecha)
+    if (!Data.Fecha) {
+      Swal.fire({
+        icon: 'error',
+        text:'Debe poner una fecha',
+        timer:1000
+      })
+      
+    }else if (!Data.Nombre) {
+      Swal.fire({
+        icon: 'error',
+        text:'Debe poner una Nombre',
+        timer:1000
+      })
+      
+    }else{
+      const res= await axios.post('https://mym-back.herokuapp.com/client',Data)
+     const {message}=res.data;
+   
+     if (res.data.status) {
+        Swal.fire({
+            icon: 'success',
+            text:message,
+            timer:1000
+         })
+         GetName()
+    }else{
+      Swal.fire({
+            icon: 'error',
+            text:message,
+            timer:1000
+        })
+
+    }
+    }
+     
+  }
+  // get Name
+  const GetName=async()=>{
+    const res= await axios.get("https://mym-back.herokuapp.com/client")
+    
+    setClient(res.data.map((client)=>client))
+   
+  }
+
   //llenar campo de objeto
   const handlerChange=(e)=>{
     console.log(e.target)    
@@ -96,6 +146,7 @@ const filtrar=(busqueda)=>{
 
   const createPDF=()=>{
     const doc= new jsPDF()
+   
     doc.text('MYM',90,10)
  
     autotable(doc,{
@@ -115,23 +166,24 @@ const filtrar=(busqueda)=>{
     })
    
     doc.text("Total:"+total,140,10)  
-   doc.save("MYM"+"/"+new Date().getMonth()+1+"/"+new Date().getDate())
+   doc.save("MYM"+Date.now())
   }
 
   return (
     <div className="App">
        <BrowserRouter>
            <Routes>
-              <Route path='/' element={<Home Cajas={Cajas2} filtrar={filtrar} createPDF={createPDF}/>}/>
+              <Route path='/' element={<Home Cajas={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total}/>}/>
               <Route path='/add' element={<Add 
               Cajas={Cajas} 
               handlerClick={handlerClick} 
               handlerChange={handlerChange} 
               Data={Data} 
               setData={setData}
-             
+              Client={Client}
+                    
               />}/>
-
+             <Route path='/addname' element={<Addname setData={setData} Data={Data} addName={addName} handlerChange={handlerChange} Client={Client}  />}/>
               
 
            </Routes>
