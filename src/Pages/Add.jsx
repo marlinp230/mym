@@ -9,7 +9,7 @@ const Add = (props) => {
         <NavBar/>
          <div className='container'>
             <div className="row">
-                <div className="col-md-6 offset-2">
+                <div className="col-md-4">
                     <form  onSubmit={handlerClick}>
                         <input type="text" name="Fecha" id="" placeholder='Fecha' className='form-control' onChange={handlerChange}/>
         
