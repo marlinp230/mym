@@ -29,8 +29,9 @@ const NavBar = (props) => {
         </li>
         
       </ul>
-      <form className="d-flex">
+      <form className="d-flex mr-">
         <input className="form-control ml-4 bg-light" type="search" placeholder="Search" aria-label="Search" onChange={(e)=>filtrar(e.target.value)}/>
+        <input className="form-control ml-4 bg-light" type="date" placeholder="Search" aria-label="Search" onChange={(e)=>filtrar(e.target.value)}/>
         
       </form>
     </div>

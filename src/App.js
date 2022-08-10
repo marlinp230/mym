@@ -15,54 +15,54 @@ function App() {
   const [Cajas2, setCajas2] = useState([])
   const [Client, setClient] = useState([])
 
-  const [Data, setData] = useState({
-    Fecha:"",
-    Nombre:"",
-    Detalle:"",
-    Monto:0
-  })
-
-  //get Total
-const total=Cajas2.reduce((p,c)=>p+c.Monto,0)
-//useEffect
-
-  useEffect(() => {
-    GetDataDB()
-    GetName()
-  
-  }, []) 
-
-/// sort
-Cajas2.sort((a,b)=>b.orden-a.orden)
-
-
-  // get dato from db 
-const GetDataDB=async()=>{
-  const res= await axios.get("https://mym-back.herokuapp.com/v/")
-  setCajas(res.data.map(caja=>caja))
-  setCajas2(res.data.map(caja=>caja))
-  }
-
-// handler click guardar 
-  const handlerClick=async(e)=>{
-    e.preventDefault()
-      const res= await axios.post("https://mym-back.herokuapp.com/v/",Data);
-      const {message}=res.data;
-      if (res.data.status) {
-         Swal.fire({
-          icon: 'success',
-          text:message,
-          timer:1000
+        const [Data, setData] = useState({
+          Fecha:"",
+          Nombre:"",
+          Detalle:"",
+          Monto:0
         })
-       }else{
-        Swal.fire({
-          icon: 'error',
-          text:message,
-          timer:1000
-        })
-      }
-      GetDataDB()
-  }
+
+          //get Total
+        const total=Cajas2.reduce((p,c)=>p+c.Monto,0)
+        //useEffect
+
+          useEffect(() => {
+            GetDataDB()
+            GetName()
+          
+          }, []) 
+
+        /// sort
+        Cajas2.sort((a,b)=>b.orden-a.orden)
+
+
+          // get dato from db 
+        const GetDataDB=async()=>{
+          const res= await axios.get("https://mym-back.herokuapp.com/v/")
+          setCajas(res.data.map(caja=>caja))
+          setCajas2(res.data.map(caja=>caja))
+          }
+
+        // handler click guardar 
+          const handlerClick=async(e)=>{
+            e.preventDefault()
+              const res= await axios.post("https://mym-back.herokuapp.com/v/",Data);
+              const {message}=res.data;
+              if (res.data.status) {
+                Swal.fire({
+                  icon: 'success',
+                  text:message,
+                  timer:1000
+                })
+              }else{
+                Swal.fire({
+                  icon: 'error',
+                  text:message,
+                  timer:1000
+                })
+              }
+              GetDataDB()
+          }
   //add name
   const addName=async(e)=>{
     e.preventDefault()
@@ -124,6 +124,7 @@ const GetDataDB=async()=>{
 ///filtrar
 const filtrar=(busqueda)=>{
   const buscado=Cajas.filter((caja)=>{
+    console.log(busqueda)
    if (busqueda=="") {
        return caja
      }
@@ -131,6 +132,9 @@ const filtrar=(busqueda)=>{
       return caja
     }
    if (caja.Nombre.toLowerCase().includes(busqueda.toLowerCase())) {
+      return caja
+    }
+    if (caja.Fecha >=busqueda) { 
       return caja
     }
     if (caja.Fecha.toLowerCase().includes(busqueda.toLowerCase())) {
@@ -157,7 +161,7 @@ const filtrar=(busqueda)=>{
 
              { header: 'Fecha', dataKey: 'Fecha' },
              { header: 'Nombre', dataKey: 'Nombre' },
-             { header: 'Detalle', dataKey: 'Nombre' },
+             { header: 'Detalle', dataKey: 'Detalle' },
              { header: 'Monto', dataKey: 'Monto' },
  
 
