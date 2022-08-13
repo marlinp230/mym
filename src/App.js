@@ -19,9 +19,10 @@ function App() {
           Fecha:"",
           Nombre:"",
           Detalle:"",
+          Telefono:"",
           Monto:0
         })
-
+     console.log(Data)
           //get Total
         const total=Cajas2.reduce((p,c)=>p+c.Monto,0)
         //useEffect
@@ -45,8 +46,11 @@ function App() {
 
         // handler click guardar 
           const handlerClick=async(e)=>{
+
             e.preventDefault()
-              const res= await axios.post("https://mym-back.herokuapp.com/v/",Data);
+
+       
+              const res= await axios.post("http://localhost:4000/v/",Data);
               const {message}=res.data;
               if (res.data.status) {
                 Swal.fire({
@@ -82,7 +86,9 @@ function App() {
       })
       
     }else{
-      const res= await axios.post('https://mym-back.herokuapp.com/client',Data)
+      // https://mym-back.herokuapp.com
+      const res= await axios.post('http://localhost:4000/client',Data)
+      console.log(res.data)
      const {message}=res.data;
    
      if (res.data.status) {
@@ -113,7 +119,8 @@ function App() {
 
   //llenar campo de objeto
   const handlerChange=(e)=>{
-    console.log(e.target)    
+    const event1=e.target.children
+      
       //  setData(...Data,[e.target.name]:e.target.value)
       setData((prev)=>({
         ...prev,[e.target.name]:e.target.value

@@ -13,18 +13,15 @@ const Add = (props) => {
                     <form  onSubmit={handlerClick}>
                         <input type="date" name="Fecha" id="" placeholder='Fecha' className='form-control' onChange={handlerChange}/>
         
-                        <select name="Nombre" id="" className='form-control' onChange={handlerChange}>
+                        <select name="Nombre" id="" data-id='hello12121' className='form-control' onChange={handlerChange}>
                             {
                                 Client.map(client=>(
-                               
-                                       <option value={client.Nombre} key={client._id}>{client.Nombre}</option>
-                              
-                                   
-                                ))
+                                  <option value={client.Nombre}  key={client._id} > {client.Nombre} Tel: {client.Telefono}</option>
+                                  
+                               ))     
                             }
-                           
-                          
                         </select>
+                        <input type="tel" name="Telefono" id="" placeholder='Telefono...' className='form-control' onChange={handlerChange}/>
                         <input type="text" name="Detalle" id="" placeholder='Detalle...' className='form-control' onChange={handlerChange}/>
                         <input type="number" name="Monto" id="" placeholder='Monto o Efectivo #' className='form-control' onChange={handlerChange}/>
                            <button className='btn btn-info mt-2'>Guardar</button>
