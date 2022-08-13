@@ -23,7 +23,7 @@ const Add = (props) => {
                         </select>
                         <input type="tel" name="Telefono" id="" placeholder='Telefono...' className='form-control' onChange={handlerChange}/>
                         <input type="text" name="Detalle" id="" placeholder='Detalle...' className='form-control' onChange={handlerChange}/>
-                        <input type="number" name="Monto" id="" placeholder='Monto o Efectivo #' className='form-control' onChange={handlerChange}/>
+                        <input type="text" name="Monto" id="" placeholder='Monto o Efectivo #' className='form-control' onChange={handlerChange}/>
                            <button className='btn btn-info mt-2'>Guardar</button>
                     </form>
                 </div>
