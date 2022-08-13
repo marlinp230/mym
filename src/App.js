@@ -50,7 +50,7 @@ function App() {
             e.preventDefault()
 
        
-              const res= await axios.post("http://localhost:4000/v/",Data);
+              const res= await axios.post("https://mym-back.herokuapp.com/v/",Data);
               const {message}=res.data;
               if (res.data.status) {
                 Swal.fire({
