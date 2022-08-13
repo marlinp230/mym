@@ -87,7 +87,7 @@ function App() {
       
     }else{
       // https://mym-back.herokuapp.com
-      const res= await axios.post('https://mym-back.herokuapp.com/client',Data)
+      const res= await axios.post('https://mym-back.herokuapp.com/client/',Data)
       console.log(res.data)
      const {message}=res.data;
    
