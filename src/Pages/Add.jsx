@@ -9,7 +9,8 @@ const Add = (props) => {
         <NavBar/>
          <div className='container'>
             <div className="row">
-                <div className="col-md-4">
+                <div className="col-md-4"> 
+                          <h1 className='text-center'><i class="fa-solid fa-clipboard"></i></h1>
                     <form  onSubmit={handlerClick}>
                         <input type="date" name="Fecha" id="" placeholder='Fecha' className='form-control' onChange={handlerChange}/>
         
@@ -21,7 +22,7 @@ const Add = (props) => {
                                ))     
                             }
                         </select>
-                        <input type="tel" name="Telefono" id="" placeholder='Telefono...' className='form-control' onChange={handlerChange}/>
+                      
                         <input type="text" name="Detalle" id="" placeholder='Detalle...' className='form-control' onChange={handlerChange}/>
                         <input type="number" name="Monto" id="" placeholder='Monto o Efectivo #' className='form-control' onChange={handlerChange}/>
                            <button className='btn btn-info mt-2'>Guardar</button>

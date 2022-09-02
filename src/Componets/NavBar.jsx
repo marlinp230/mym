@@ -22,6 +22,8 @@ const NavBar = (props) => {
           </Link>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><Link className="dropdown-item" to='/addname'> <i className="fa-solid fa-plus m-2"></i>Add Name</Link></li>
+            <li><Link className="dropdown-item" to='/delete'> <i className="fa-solid fa-trash-can m-2"> </i>Delete</Link></li>
+     
             <li><Link className="dropdown-item" to='/'>Another action</Link></li>
             <li><hr className="dropdown-divider"/></li>
             <li><Link className="dropdown-item" to='/'>Something else here</Link></li>

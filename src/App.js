@@ -7,6 +7,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import autotable from "jspdf-autotable"
 import jsPDF from "jspdf"
+import Deleted from './Pages/Deleted';
 
 
    
@@ -14,34 +15,74 @@ function App() {
   const [Cajas, setCajas] = useState([]) 
   const [Cajas2, setCajas2] = useState([])
   const [Client, setClient] = useState([])
+  const [Status, setStatus] = useState(true)
 
         const [Data, setData] = useState({
           Fecha:"",
           Nombre:"",
           Detalle:"",
-          Telefono:"",
+       
           Monto:0
         })
-     console.log(Data)
+     
           //get Total
         const total=Cajas2.reduce((p,c)=>p+c.Monto,0)
         //useEffect
 
           useEffect(() => {
-            GetDataDB()
+            if (Status) {
+            GetDataDB()   
             GetName()
+          }
+          return setStatus(false)
           
           }, []) 
-
+                   
         /// sort
         Cajas2.sort((a,b)=>b.orden-a.orden)
+         // delete 
+         const Delete= async(id)=>{
 
+          const { value: password } = await Swal.fire({
+            title: 'Enter your PIN',
+            input: 'number',
+          
+            inputPlaceholder: 'Enter your PIN',
+            inputAttributes: {
+              maxlength: 10, 
+              autocapitalize: 'off',
+              autocorrect: 'off'
+            }
+          })    
+
+          // not match
+          if (!password==="1234") {
+            Swal.fire(`Your PIN not match`)
+
+          }   
+          /// number macth
+          if (password==="1234") {               
+                 
+            const res= await axios.delete(`https://mym-back.herokuapp.com/v/${id}`);  
+             
+            if (res.data.status) {
+              Swal.fire(`${res.data.message}`)
+            } else{
+              Swal.fire(`${res.data.message}`)            
+
+            }   
+          }
+             console.log(id)
+            
+             
+         }
 
           // get dato from db 
         const GetDataDB=async()=>{
-          const res= await axios.get("https://mym-back.herokuapp.com/v/")
+          const res= await axios.get(`https://mym-back.herokuapp.com/v/`);
           setCajas(res.data.map(caja=>caja))
           setCajas2(res.data.map(caja=>caja))
+        
           }
 
         // handler click guardar 
@@ -195,6 +236,7 @@ const filtrar=(busqueda)=>{
                     
               />}/>
              <Route path='/addname' element={<Addname setData={setData} Data={Data} addName={addName} handlerChange={handlerChange} Client={Client}  />}/>
+             <Route path='/delete' element={<Deleted Cajas2={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total} Delete={Delete}/>}/>
               
 
            </Routes>

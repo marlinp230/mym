@@ -14,7 +14,7 @@ const Table = (props) => {
             <th scope="col">#</th>
              <th scope="col"><i className="fa-solid fa-calendar-check"></i> Fecha</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Telefono</th>
+            
 
             <th scope="col">Detalle</th>
             <th scope="col">Movimiento: <i className="fa-solid fa-dollar-sign"></i>{total}</th>
@@ -29,7 +29,7 @@ const Table = (props) => {
               <th scope="row">{caja.orden}</th>
               <th scope="row">{caja.Fecha}</th>
               <td>{caja.Nombre}</td>
-              <td>{caja.Telefono}</td>
+           
 
               <td>{caja.Detalle}</td>
               <td><i className="fa-solid fa-dollar-sign"></i>{caja.Monto}</td>
