@@ -199,9 +199,8 @@ const filtrar=(busqueda)=>{
 }
 
   const createPDF=()=>{
-    const doc= new jsPDF()
-   
-    doc.text('MYM',90,10)
+       const doc= new jsPDF()
+        doc.text('MYM',90,10)
  
     autotable(doc,{
     

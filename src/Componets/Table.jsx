@@ -5,9 +5,7 @@ const Table = (props) => {
   return (
    <div className="container"> 
       <button onClick={createPDF} className='btn btn-sm btn-info'><i className="fa-solid fa-file-circle-plus"></i></button>
-     <div className="div">
-        <i className="fa-solid fa-dollar-sign"></i>
-     </div>
+    
      <table className="table table-striped mt-4 text-center">
         <thead className='bg-success'>
             <tr>
