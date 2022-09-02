@@ -7,13 +7,13 @@ const Addname = (props) => {
   return (
     <div >
         <NavBar/>
-        <div className="container">
+        <div className="container">  
         <div className="row">
               <div className="col-md-4 mt-2">
                      <form  onSubmit={addName}>
                         <input type="date" name="Fecha" id="" placeholder='Fecha' className='form-control' onChange={handlerChange}/>
                         <input type="text" name="Nombre" id="" placeholder='Nombre' className='form-control'onChange={handlerChange} />
-                        <input type="tel" name="Telefono" id="" placeholder='Telefono' className='form-control'onChange={handlerChange} />
+                      
 
                            <button className='btn btn-info mt-2'>Guardar</button>
                      </form>
@@ -25,7 +25,7 @@ const Addname = (props) => {
       <th scope="col">#</th>
       <th scope="col">Fecha</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Telefono</th>
+      
 
      
     </tr>
@@ -38,7 +38,7 @@ const Addname = (props) => {
 
           <th scope="row">{client.Fecha}</th>
           <th scope="row">{client.Nombre}</th>
-          <th scope="row">{client.Telefono}</th>
+        
 
         </tr>
         ))

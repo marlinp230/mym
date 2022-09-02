@@ -53,6 +53,7 @@ function App() {
               autocapitalize: 'off',
               autocorrect: 'off'
             }
+           
           })    
 
           // not match
@@ -67,6 +68,7 @@ function App() {
              
             if (res.data.status) {
               Swal.fire(`${res.data.message}`)
+              GetDataDB()
             } else{
               Swal.fire(`${res.data.message}`)            
 
@@ -111,7 +113,7 @@ function App() {
   //add name
   const addName=async(e)=>{
     e.preventDefault()
-    console.log(Data.Fecha)
+    console.log(Data)
     if (!Data.Fecha) {
       Swal.fire({
         icon: 'error',
