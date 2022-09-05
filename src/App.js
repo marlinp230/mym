@@ -200,8 +200,8 @@ const filtrar=(busqueda)=>{
 
   const createPDF=()=>{
        const doc= new jsPDF()
-        doc.text('MYM',90,10)
- 
+        doc.text('MMYT',90,10)
+        doc.text("Total "+total,155,10) 
     autotable(doc,{
     
      
@@ -218,7 +218,7 @@ const filtrar=(busqueda)=>{
           body:Cajas2
     })
    
-    doc.text("Total:"+total,140,10)  
+    
    doc.save("MYM"+Date.now())
   }
 
