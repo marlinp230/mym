@@ -15,7 +15,7 @@ const totalItems= Lista.length
     useEffect(() => { 
         const getDTA = async () => {
 
-            const res = await axios.get(`https://mym-back.herokuapp.com/v/profile/CAJA/${onlys.only}`)
+            const res = await axios.get(`https://mym-back.herokuapp.com/v/profile/${onlys.only}`)
             console.log(res.data)
             setLista(res.data.map(lista => lista))
         }
