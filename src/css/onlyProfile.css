@@ -1,5 +1,5 @@
 header{
-    width: 90%;
+    width: 98%;
     background: #80a562;
     margin: 0 auto;
     display: flex;
@@ -10,17 +10,18 @@ header{
     margin-top: 5px;
 }
 header div{
-width: 30%;
+width: 32%;
 padding: 10px;
 
 font-size: 32px;
 border-radius: 50px 0 0 0;
-margin-top: 5px;
+
+
 
 }
 .container1{
  
-  width: 90%;
+  width: 98%;
    margin: 0 auto;
 
   color: black;
@@ -44,7 +45,7 @@ flex-direction: column;
 justify-content: space-around;
 
 background-color: deepskyblue;
-width: 30%;
+width: 32%;
 
 
 }
@@ -133,7 +134,7 @@ border-radius: 10px;
   justify-content: space-around;
   
   background-color: deepskyblue;
-  width: 45%;
+  width: 49%;
   
   
   }
