@@ -15,7 +15,7 @@ const totalItems= Lista.length
     useEffect(() => { 
         const getDTA = async () => {
 
-            const res = await axios.get(`http://localhost:4000/v/profile/${onlys.only}`)
+            const res = await axios.get(`https://mym-back.herokuapp.com/v/profile/CAJA/${onlys.only}`)
             console.log(res.data)
             setLista(res.data.map(lista => lista))
         }
@@ -27,7 +27,7 @@ const totalItems= Lista.length
         <>
              <header>
                 <div className={total <0 ?"red":'green'}>CAJA: ${total}</div>
-                  <div>TotalItems: ${totalItems}</div>
+                  <div>TotalItems: {totalItems}</div>
 
                
                    <div>Total: $2000</div>
