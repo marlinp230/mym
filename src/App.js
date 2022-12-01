@@ -5,20 +5,28 @@ import Add from './Pages/Add';
 import Addname from './Pages/Addname';
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import autotable from "jspdf-autotable"
+import autotable from "jspdf-autotable"                     
 import jsPDF from "jspdf"
 import Deleted from './Pages/Deleted';
 
+import  moment from 'moment';
+import OnlyProfile from './Pages/OnlyProfile';
 
-   
+          
+
+                        
 function App() {
   const [Cajas, setCajas] = useState([]) 
   const [Cajas2, setCajas2] = useState([])
   const [Client, setClient] = useState([])
   const [Status, setStatus] = useState(true)
+  const [Fecha, setFecha] = useState('')
+const dates= ()=>{
+  return `${moment().format('L')}`
+}
 
         const [Data, setData] = useState({
-          Fecha:"",
+          Fecha:dates(),
           Nombre:"",
           Detalle:"",
        
@@ -33,6 +41,7 @@ function App() {
             if (Status) {
             GetDataDB()   
             GetName()
+          
           }
           return setStatus(false)
           
@@ -89,44 +98,38 @@ function App() {
 
         // handler click guardar 
           const handlerClick=async(e)=>{
-
-            e.preventDefault()
-
-       
               const res= await axios.post("https://mym-back.herokuapp.com/v/",Data);
               const {message}=res.data;
               if (res.data.status) {
-                Swal.fire({
-                  icon: 'success',
-                  text:message,
-                  timer:1000
-                })
+                alertDisplay('success',message,1000)
+                
               }else{
-                Swal.fire({
-                  icon: 'error',
-                  text:message,
-                  timer:1000
-                })
+                alertDisplay('error',message,1000)
+                
               }
               GetDataDB()
+              e.preventDefault()
           }
+
+ //alert display
+ const alertDisplay=(icon,text,timer)=>{
+  Swal.fire({
+    icon:icon,
+    text:text,
+    timer:timer
+  }) 
+}
   //add name
   const addName=async(e)=>{
     e.preventDefault()
     console.log(Data)
     if (!Data.Fecha) {
-      Swal.fire({
-        icon: 'error',
-        text:'Debe poner una fecha',
-        timer:1000
-      })
+      alertDisplay('error','Debe poner una fecha1 ',1000)
+     
       
     }else if (!Data.Nombre) {
-      Swal.fire({
-        icon: 'error',
-        text:'Debe poner una Nombre',
-        timer:1000
-      })
+      alertDisplay('error','Debe poner una Nombre',1000)
+     
       
     }else{
       // https://mym-back.herokuapp.com
@@ -135,18 +138,11 @@ function App() {
      const {message}=res.data;
    
      if (res.data.status) {
-        Swal.fire({
-            icon: 'success',
-            text:message,
-            timer:1000
-         })
+      alertDisplay('success',message,1000)
+       
          GetName()
     }else{
-      Swal.fire({
-            icon: 'error',
-            text:message,
-            timer:1000
-        })
+      alertDisplay('error',message,1000)
 
     }
     }
@@ -168,9 +164,10 @@ function App() {
       setData((prev)=>({
         ...prev,[e.target.name]:e.target.value
       }))
-      
+     
     }
 
+    
 ///filtrar
 const filtrar=(busqueda)=>{
   const buscado=Cajas.filter((caja)=>{
@@ -219,29 +216,34 @@ const filtrar=(busqueda)=>{
     })
    
     
-   doc.save("MYM"+Date.now())
+   doc.save("MYM"+"/"+"$"+total+"/"+Date.now())
   }
 
   return (
     <div className="App">
+                 
        <BrowserRouter>
            <Routes>
               <Route path='/' element={<Home Cajas={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total}/>}/>
               <Route path='/add' element={<Add 
-              Cajas={Cajas} 
-              handlerClick={handlerClick} 
+              Cajas={Cajas}    
+              handlerClick={handlerClick}         
               handlerChange={handlerChange} 
               Data={Data} 
               setData={setData}
               Client={Client}
-                    
+                                   
               />}/>
              <Route path='/addname' element={<Addname setData={setData} Data={Data} addName={addName} handlerChange={handlerChange} Client={Client}  />}/>
              <Route path='/delete' element={<Deleted Cajas2={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total} Delete={Delete}/>}/>
+             <Route path='/profile/:only' element={<OnlyProfile/>} />
               
 
+              
+   
            </Routes>
-       </BrowserRouter>
+       </BrowserRouter>        
+     
     </div>
   );
 }       

@@ -1,0 +1,151 @@
+header{
+    width: 90%;
+    background: #80a562;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 0;
+    border-radius: 50px 50px 0 0;
+    margin-top: 5px;
+}
+header div{
+width: 30%;
+padding: 10px;
+
+font-size: 32px;
+border-radius: 50px 0 0 0;
+margin-top: 5px;
+
+}
+.container1{
+ 
+  width: 90%;
+   margin: 0 auto;
+
+  color: black;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 32px;
+}
+.row{
+  background-color:#c391e0;
+  width:100%;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0 auto;
+}
+.card{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+
+background-color: deepskyblue;
+width: 30%;
+
+
+}
+
+
+
+
+.row .card{
+padding: 20px;
+margin: 1px;
+border-radius: 10px;
+
+}
+.subcard{
+display: flex ;
+justify-content: space-between;
+background-color: darkblue;
+border-radius: 10px;
+}
+.x{
+background-color: rebeccapurple;
+padding: 5px;
+}
+.fecha{
+padding: 10px;
+}
+.amount{
+padding-right: 10px;
+}
+.description{
+margin-top: 10px;
+padding-left: 10px;
+background-color: blue;
+border-radius: 10px;
+
+}
+
+
+
+  .red{
+    background-color: red;
+    color: white;
+  }
+  .green{
+    background-color:green;
+    color: white;
+  }
+
+  @media only screen and (max-width: 892px) {
+    body {
+      background-color: blue;
+    }
+    .card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        background-color: deepskyblue;
+        width: 100%;
+        
+        
+        }
+   
+  }
+
+
+
+  @media only screen and (min-width: 893px) {
+    body {
+      background-color:pink;
+    }
+   
+.row{
+    background-color:#c391e0;
+    width:100%;
+  
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  
+  background-color: deepskyblue;
+  width: 45%;
+  
+  
+  }
+  
+  .row .card{
+  padding: 20px;
+  margin: 1px;
+  border-radius: 10px;
+  
+  }
+  .amount{
+    padding-right: 5px;
+    }
+   
+  }

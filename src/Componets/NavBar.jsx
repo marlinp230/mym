@@ -16,6 +16,9 @@ const NavBar = (props) => {
         <li className="nav-item">
           <Link className="nav-link" to='/add'> <i className="fa-solid fa-plus"></i> Add</Link>
         </li>
+        <li className="nav-item">
+          <Link className="nav-link" to='/profile/CAJA'> <i className="fa-solid fa-plus"></i> CAJA</Link>
+        </li>
         <li className="nav-item dropdown">
           <Link className="nav-link dropdown-toggle" to='/' id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i className="fa-solid fa-circle-chevron-down"></i> Dropdown

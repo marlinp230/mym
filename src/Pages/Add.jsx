@@ -1,9 +1,10 @@
 import React from 'react'
 import NavBar from '../Componets/NavBar'
 
-
+import moment from 'moment'
 const Add = (props) => {
-    const {handlerClick,handlerChange,Client}=props
+    const {handlerClick,handlerChange,Client,Data}=props
+   
   return (
     <div>
         <NavBar/>
@@ -12,7 +13,7 @@ const Add = (props) => {
                 <div className="col-md-4"> 
                           <h1 className='text-center'><i class="fa-solid fa-clipboard"></i></h1>
                     <form  onSubmit={handlerClick}>
-                        <input type="date" name="Fecha" id="" placeholder='Fecha' className='form-control' onChange={handlerChange}/>
+                      
         
                         <select name="Nombre" id="" data-id='hello12121' className='form-control' onChange={handlerChange}>
                             {
