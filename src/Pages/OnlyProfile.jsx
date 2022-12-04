@@ -5,7 +5,7 @@ import axios from 'axios'
 import '../css/onlyProfile.css'
 const OnlyProfile = () => {
     const onlys = useParams()
-   
+   console.log("only"+onlys.onlys)
     const [Lista, setLista] = useState([])
  /// sort
  Lista.sort((a,b)=>b.orden-a.orden)
@@ -15,7 +15,7 @@ const totalItems= Lista.length
     useEffect(() => { 
         const getDTA = async () => {
 
-            const res = await axios.get(`https://mym-back.herokuapp.com/v/profile/${onlys.only}`)
+            const res = await axios.get(`https://backmym.herokuapp.com/v/profile/${onlys.only}`)
             console.log(res.data)
             setLista(res.data.map(lista => lista))
         }

@@ -73,7 +73,7 @@ const dates= ()=>{
           /// number macth
           if (password==="1234") {               
                  
-            const res= await axios.delete(`https://mym-back.herokuapp.com/v/${id}`);  
+            const res= await axios.delete(`https://backmym.herokuapp.com/v/${id}`);  
              
             if (res.data.status) {
               Swal.fire(`${res.data.message}`)
@@ -90,7 +90,7 @@ const dates= ()=>{
 
           // get dato from db 
         const GetDataDB=async()=>{
-          const res= await axios.get(`https://mym-back.herokuapp.com/v/`);
+          const res= await axios.get(`https://backmym.herokuapp.com/v/`);
           setCajas(res.data.map(caja=>caja))
           setCajas2(res.data.map(caja=>caja))
         
@@ -98,7 +98,7 @@ const dates= ()=>{
 
         // handler click guardar 
           const handlerClick=async(e)=>{
-              const res= await axios.post("https://mym-back.herokuapp.com/v/",Data);
+              const res= await axios.post("https://backmym.herokuapp.com/v/",Data);
               const {message}=res.data;
               if (res.data.status) {
                 alertDisplay('success',message,1000)
@@ -133,7 +133,7 @@ const dates= ()=>{
       
     }else{
       // https://mym-back.herokuapp.com
-      const res= await axios.post('https://mym-back.herokuapp.com/client/',Data)  
+      const res= await axios.post('https://backmym.herokuapp.com/client',Data)  
       console.log(res.data)
      const {message}=res.data;
    
@@ -150,7 +150,7 @@ const dates= ()=>{
   }
   // get Name
   const GetName=async()=>{
-    const res= await axios.get("https://mym-back.herokuapp.com/client")
+    const res= await axios.get("https://backmym.herokuapp.com/client")
     
     setClient(res.data.map((client)=>client))
    
