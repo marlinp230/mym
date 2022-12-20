@@ -11,6 +11,8 @@ import Deleted from './Pages/Deleted';
 
 import  moment from 'moment';
 import OnlyProfile from './Pages/OnlyProfile';
+import Hiden from './Pages/Hiden';
+
 
           
 
@@ -20,7 +22,8 @@ function App() {
   const [Cajas2, setCajas2] = useState([])
   const [Client, setClient] = useState([])
   const [Status, setStatus] = useState(true)
-  const [Fecha, setFecha] = useState('')
+ 
+
 const dates= ()=>{
   return `${moment().format('L')}`
 }
@@ -42,8 +45,8 @@ const dates= ()=>{
             GetDataDB()   
             GetName()
           
-          }
-          return setStatus(false)
+          } 
+          return ()=>setStatus(false)    ;
           
           }, []) 
                    
@@ -218,13 +221,19 @@ const filtrar=(busqueda)=>{
     
    doc.save("MYM"+"/"+"$"+total+"/"+Date.now())
   }
-
+  const turn=async (id,redi)=>{
+    // https://backmym.herokuapp.com/v/
+    const res =await axios.put(`https://backmym.herokuapp.com/v/turn/${id}`);
+   window.location.href=redi
+    
+  }
+    
   return (
     <div className="App">
                  
        <BrowserRouter>
            <Routes>
-              <Route path='/' element={<Home Cajas={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total}/>}/>
+              <Route path='/' element={<Home Cajas={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total} turn={turn}/>}/>
               <Route path='/add' element={<Add 
               Cajas={Cajas}    
               handlerClick={handlerClick}         
@@ -237,6 +246,8 @@ const filtrar=(busqueda)=>{
              <Route path='/addname' element={<Addname setData={setData} Data={Data} addName={addName} handlerChange={handlerChange} Client={Client}  />}/>
              <Route path='/delete' element={<Deleted Cajas2={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total} Delete={Delete}/>}/>
              <Route path='/profile/:only' element={<OnlyProfile/>} />
+             <Route path='/hiden' element={<Hiden Cajas={Cajas} total={total}  turn={turn}/>} />
+
               
 
               

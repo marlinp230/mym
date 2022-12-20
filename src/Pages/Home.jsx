@@ -5,13 +5,13 @@ import Table from '../Componets/Table'
 
  
 const Home = (props) => {
-  const {Cajas,filtrar,createPDF,total}=props
+  const {Cajas,filtrar,createPDF,total,turn}=props
   return (
     <div>
         <NavBar filtrar={filtrar}/>
         <h1 className='text-center mt-2'><i class="fa-solid fa-list-check m-2"></i>Datos</h1>
-        <Table Cajas={Cajas} createPDF={createPDF} total={total}/>
-
+        <Table Cajas={Cajas} createPDF={createPDF} total={total} turn={turn}/>
+        
     </div>
   )
 }

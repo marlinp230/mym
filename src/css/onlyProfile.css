@@ -1,5 +1,5 @@
 header{
-    width: 98%;
+    width: 100%;
     background: #80a562;
     margin: 0 auto;
     display: flex;
@@ -10,7 +10,7 @@ header{
     margin-top: 5px;
 }
 header div{
-width: 32%;
+width: 50%;
 padding: 10px;
 
 font-size: 32px;
@@ -21,7 +21,7 @@ border-radius: 50px 0 0 0;
 }
 .container1{
  
-  width: 98%;
+  width: 100%;
    margin: 0 auto;
 
   color: black;
@@ -45,7 +45,7 @@ flex-direction: column;
 justify-content: space-around;
 
 background-color: deepskyblue;
-width: 32%;
+width: 50%;
 
 
 }
@@ -94,10 +94,10 @@ border-radius: 10px;
     color: white;
   }
 
-  @media only screen and (max-width: 892px) {
-    body {
-      background-color: blue;
-    }
+  @media only screen and (max-width: 1000px) {
+  /* body{
+    background-color: black;
+  } */
     .card{
         display: flex;
         flex-direction: column;
@@ -112,11 +112,52 @@ border-radius: 10px;
   }
 
 
+  
 
-  @media only screen and (min-width: 893px) {
-    body {
-      background-color:pink;
+
+
+  @media only screen and (min-width: 904px) {
+    /* body {
+      background-color:rgb(97, 12, 12);
+    } */
+   
+.row{
+    background-color:#12b723;
+    width:100%;
+  
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  
+  background-color: deepskyblue;
+  width: 40%;
+  
+  
+  }
+  
+  .row .card{
+  padding: 20px;
+  margin: 1px;
+  border-radius: 10px;
+  
+  }
+  .amount{
+    padding-right: 5px;
     }
+   
+  }
+
+  @media only screen and (min-width: 1000px) {
+    /* body {
+      background-color:rgb(42, 15, 194);
+    } */
    
 .row{
     background-color:#c391e0;
@@ -134,7 +175,7 @@ border-radius: 10px;
   justify-content: space-around;
   
   background-color: deepskyblue;
-  width: 49%;
+  width: 48%;
   
   
   }
@@ -148,5 +189,25 @@ border-radius: 10px;
   .amount{
     padding-right: 5px;
     }
+   
+  }
+
+
+
+  @media only screen and (min-width: 1265px) {
+    /* body{
+      background-color: yellow;
+    } */
+  
+    .card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        background-color: rgb(108, 83, 131);
+        width: 24%;
+        
+        
+        }
    
   }
