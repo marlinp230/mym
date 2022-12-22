@@ -297,7 +297,7 @@ const filtrar=(busqueda)=>{
               />}/>
              <Route path='/addname' element={<Addname setData={setData} Data={Data} addName={addName} handlerChange={handlerChange} Client={Client}  />}/>
              <Route path='/delete' element={<Deleted Cajas2={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total} Delete={Delete}/>}/>
-             <Route path='/profile/:only' element={<OnlyProfile  Cajas3False={Cajas3False}/>} />
+             <Route path='/profile/:only' element={<OnlyProfile  Cajas3False={Cajas3False}/>}  cajafalsaTotal={cajafalsaTotal}/>
              <Route path='/hiden' element={<Hiden Cajas={Cajas} cajafalsaTotal={cajafalsaTotal}  turn={turn} filtrar={filtrar}enfalse={enfalse} cajaF={cajaF}  GetDataDB={GetDataDB}/>} />
 
               

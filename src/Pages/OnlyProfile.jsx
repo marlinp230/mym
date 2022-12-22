@@ -3,12 +3,14 @@ import { useState } from 'react'
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import '../css/onlyProfile.css'
-const OnlyProfile = () => {
+const OnlyProfile = ({cajafalsaTotal}) => {
     const onlys = useParams()
    console.log("only"+onlys.onlys)
     const [Lista, setLista] = useState([])
     const [Lista2, setLista2] = useState([])
-   
+    const [Total, setTotal] = useState(0)
+
+  
 
     const enfalse11=()=>{
         
@@ -20,6 +22,10 @@ const OnlyProfile = () => {
           
         })
         setLista2(resf)
+        console.log(Lista2)
+        
+        const total=Lista2.reduce((p,c)=>p+c.Monto,0)
+        setTotal(total)
     }
  /// sort
  Lista.sort((a,b)=>b.orden-a.orden)
@@ -30,21 +36,27 @@ const totalItems= Lista.length
         const getDTA = async () => {
 
             const res = await axios.get(`https://backmym.herokuapp.com/v/profile/${onlys.only}`)
-            console.log(res.data)
+           
             setLista(res.data.map(lista => lista))
         }
         getDTA()
+        console.log('1')
+        enfalse11()
+       
 
         return()=>{
-           enfalse11()
+console.log('2')
+
+       
+           
         }
     },[])
  //get Total
- const total=Lista2.reduce((p,c)=>p+c.Monto,0)  
+
     return (
         <>
              <header>
-                <div className={total <0 ?"red":'green'}>CAJA: ${total}</div>
+                <div className={Total <0 ?"red":'green'} onClick={enfalse11}>CAJA: ${Total}</div>
                   <div>TotalItems: {totalItems}</div>
 
                
@@ -55,11 +67,11 @@ const totalItems= Lista.length
 
                 <div className="row">
                     {
-                        Lista.map(list=>(
+                        Lista.map((list,index)=>(
                             list.estado===false&&
                      <div className="card" key={list._id}>
                           <div className="subcard">
-                             <div className="x">{list.orden}</div>
+                             <div className="x">{index+1}</div>
                              <div className="fecha">{list.Fecha}</div>
                              <div className={list.Monto <0 ?"red":'green'}>${list.Monto}</div>
                           </div>
