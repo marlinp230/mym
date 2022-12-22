@@ -13,7 +13,7 @@ const Table = (props) => {
             <th scope="col">Detalle</th>
             <th scope="col">Movimiento: <i className="fa-solid fa-dollar-sign"></i>{total}</th>
             <th scope="col"><i className="fa-solid fa-calendar-check"></i> Fecha</th>
-            <th scope='col'>Acction</th>
+        
             
 
             
@@ -25,12 +25,12 @@ const Table = (props) => {
         <tbody>
           {
             Cajas.map((caja)=>(
-              caja.estado&&<tr key={caja._id}>
+              caja.estado&&<tr key={caja._id} onDoubleClick={()=>{turn(caja._id,'/')}}>
                 <td>{caja.Nombre}</td>
                 <td>{caja.Detalle}</td>
                 <td><i className="fa-solid fa-dollar-sign"></i>{caja.Monto}</td>
               <th scope="row">{caja.Fecha}</th>
-              <td><button className='btn btn-info btn-sm' onClick={()=>{turn(caja._id,'/')}}>Hide</button></td>
+             
          
              
            
