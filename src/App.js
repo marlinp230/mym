@@ -20,17 +20,21 @@ import Hiden from './Pages/Hiden';
 function App() {
   const [Cajas, setCajas] = useState([]) 
   const [Cajas2, setCajas2] = useState([])
+  const [Cajas3False, setCajas3False] = useState([])
+  const [cajaF, setcajaF] = useState([]) 
   const [Client, setClient] = useState([])
   const [Status, setStatus] = useState(true)
- 
+  const [cajafalsaTotal, setcajafalsaTotal] = useState(0)
 
+
+ 
 const dates= ()=>{
   return `${moment().format('L')}`
 }
 
         const [Data, setData] = useState({
           Fecha:dates(),
-          Nombre:"",
+          Nombre:"",  
           Detalle:"",
        
           Monto:0
@@ -38,18 +42,26 @@ const dates= ()=>{
      
           //get Total
         const total=Cajas2.reduce((p,c)=>p+c.Monto,0)
+         //get Total
+         const totalCaja3=Cajas3False.reduce((p,c)=>p+c.Monto,0)
         //useEffect
 
           useEffect(() => {
             if (Status) {
+             
             GetDataDB()   
             GetName()
-          
+                  
+            
+             
           } 
-          return ()=>setStatus(false)    ;
+          return ()=>{
+            setStatus(false) 
+            enfalse()
+          }   ;
           
           }, []) 
-                   
+               
         /// sort
         Cajas2.sort((a,b)=>b.orden-a.orden)
          // delete 
@@ -90,15 +102,20 @@ const dates= ()=>{
             
              
          }
-
+      
           // get dato from db 
         const GetDataDB=async()=>{
           const res= await axios.get(`https://backmym.herokuapp.com/v/`);
           setCajas(res.data.map(caja=>caja))
-          setCajas2(res.data.map(caja=>caja))
+  
+          // setCajas(res.data.map(caja=>caja.estado ? caja :caja))
+          setCajas2(res.data.map(caja=>caja))   
+         
         
+         
+      
           }
-
+       
         // handler click guardar 
           const handlerClick=async(e)=>{
               const res= await axios.post("https://backmym.herokuapp.com/v/",Data);
@@ -156,9 +173,39 @@ const dates= ()=>{
     const res= await axios.get("https://backmym.herokuapp.com/client")
     
     setClient(res.data.map((client)=>client))
-   
+    
+ 
   }
+ 
+  // const enfalse=()=>{
+  //   const resf= Cajas.filter(caja=>{
+  //     if(caja.estado===false){
+  //         return caja
+  //     }
 
+      
+  //   })
+
+  //   setCajas3False(resf)
+   
+  //  }
+
+  const enfalse=()=>{
+    
+    const resf= Cajas.filter(caja=>{
+      if(caja.estado===false){
+          return caja
+      }
+
+      
+    })
+    GetDataDB()
+
+    setcajaF(resf)
+    const totalCaja3=Cajas3False.reduce((p,c)=>p+c.Monto,0)
+    setcajafalsaTotal(totalCaja3)
+   
+   }
   //llenar campo de objeto
   const handlerChange=(e)=>{
     const event1=e.target.children
@@ -224,7 +271,12 @@ const filtrar=(busqueda)=>{
   const turn=async (id,redi)=>{
     // https://backmym.herokuapp.com/v/
     const res =await axios.put(`https://backmym.herokuapp.com/v/turn/${id}`);
-   window.location.href=redi
+    GetDataDB()
+    enfalse()
+
+  // window.location.href=redi
+ 
+     
     
   }
     
@@ -245,8 +297,8 @@ const filtrar=(busqueda)=>{
               />}/>
              <Route path='/addname' element={<Addname setData={setData} Data={Data} addName={addName} handlerChange={handlerChange} Client={Client}  />}/>
              <Route path='/delete' element={<Deleted Cajas2={Cajas2} filtrar={filtrar} createPDF={createPDF} total={total} Delete={Delete}/>}/>
-             <Route path='/profile/:only' element={<OnlyProfile/>} />
-             <Route path='/hiden' element={<Hiden Cajas={Cajas} total={total}  turn={turn}/>} />
+             <Route path='/profile/:only' element={<OnlyProfile  Cajas3False={Cajas3False}/>} />
+             <Route path='/hiden' element={<Hiden Cajas={Cajas} cajafalsaTotal={cajafalsaTotal}  turn={turn} filtrar={filtrar}enfalse={enfalse} cajaF={cajaF}  GetDataDB={GetDataDB}/>} />
 
               
 
